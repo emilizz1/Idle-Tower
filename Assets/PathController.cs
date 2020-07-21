@@ -6,23 +6,10 @@ public class PathController : MonoBehaviour
 {
     public static PathController instance;
 
-    public List<Vector3> paht;
+    public List<Vector3> path;
 
     private void Awake()
     {
         instance = this;
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

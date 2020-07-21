@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] float health, speed;
 
-    bool alive;
+    bool alive = true;
 
     void Start()
     {
@@ -16,15 +16,15 @@ public class Enemy : MonoBehaviour
     IEnumerator Move()
     {
         int pahtStep = 0;
-        Vector3 currentTarget = PathController.instance.paht[pahtStep];
+        Vector3 currentTarget = PathController.instance.path[pahtStep];
         while (alive)
         {
             yield return null;
-            Vector2.MoveTowards(transform.position, currentTarget, speed);
+            transform.position =  Vector2.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
             if(Vector2.Distance(currentTarget, transform.position) < 0.01f)
             {
                 pahtStep++;
-                currentTarget = PathController.instance.paht[pahtStep];
+                currentTarget = PathController.instance.path[pahtStep];
             }
         }
     }
