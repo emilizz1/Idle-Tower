@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner instance;
+
     [SerializeField] GameObject enemy;
     [SerializeField] Vector3 startPos;
     [SerializeField] float spawnTime;
 
-    internal List<Enemy> enemies;
+    internal List<Enemy> enemies = new List<Enemy>();
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -20,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             GameObject _newEnemy = Instantiate(enemy, startPos, Quaternion.identity, transform);
-            //enemies.Add(_newEnemy.GetComponent<Enemy>());
+            enemies.Add(_newEnemy.GetComponent<Enemy>());
             yield return new WaitForSeconds(spawnTime);
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float health, speed;
+    [SerializeField] SpriteRenderer healthBar;
 
     bool alive = true;
 
@@ -24,6 +25,11 @@ public class Enemy : MonoBehaviour
             if(Vector2.Distance(currentTarget, transform.position) < 0.01f)
             {
                 pahtStep++;
+                if(pahtStep == PathController.instance.path.Count)
+                {
+                    EnemyKilled();
+                    break;
+                }
                 currentTarget = PathController.instance.path[pahtStep];
             }
         }
@@ -41,5 +47,7 @@ public class Enemy : MonoBehaviour
     void EnemyKilled()
     {
         alive = false;
+        EnemySpawner.instance.enemies.Remove(this);
+        Destroy(gameObject);
     }
 }
