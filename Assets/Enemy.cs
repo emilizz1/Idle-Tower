@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float health, speed;
-    [SerializeField] SpriteRenderer healthBar;
+    [SerializeField] float maxHealth, speed;
+    [SerializeField] SpriteMask healthBar;
+    [SerializeField] float zeroHealthPos;
 
     bool alive = true;
+    float currentHealth;
 
     void Start()
     {
+        currentHealth = maxHealth;
         StartCoroutine(Move());
     }
 
@@ -37,8 +40,9 @@ public class Enemy : MonoBehaviour
 
     public void DealDamage(float _damage)
     {
-        health -= _damage;
-        if(health <= 0)
+        currentHealth -= _damage;
+        healthBar.transform.localPosition = new Vector2(0f, (1 - (currentHealth / maxHealth)) * zeroHealthPos);
+        if(currentHealth <= 0)
         {
             EnemyKilled();
         }
