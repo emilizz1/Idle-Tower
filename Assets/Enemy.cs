@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxHealth, speed;
     [SerializeField] SpriteMask healthBar;
     [SerializeField] float zeroHealthPos;
+    [SerializeField] int reward;
 
     bool alive = true;
     float currentHealth;
@@ -52,6 +53,7 @@ public class Enemy : MonoBehaviour
     {
         alive = false;
         EnemySpawner.instance.enemies.Remove(this);
+        MoneyController.instance.AddMoney(reward);
         Destroy(gameObject);
     }
 }

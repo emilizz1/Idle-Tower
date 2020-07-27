@@ -181,6 +181,7 @@ MonoBehaviour:
   speed: 1
   healthBar: {fileID: 8746568598159438740}
   zeroHealthPos: -0.14
+  reward: 5
 --- !u!1 &6092463071062170455
 GameObject:
   m_ObjectHideFlags: 0

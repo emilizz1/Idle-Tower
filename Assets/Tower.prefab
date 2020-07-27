@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   bullet: {fileID: 4870285075267542482, guid: 7b848bdd36c2aef4f8e632bfd5cc1f4b, type: 3}
-  fireRate: 0.2
+  fireRate: 0.5
 --- !u!212 &3616294860922840089
 SpriteRenderer:
   m_ObjectHideFlags: 0
